@@ -1,0 +1,15 @@
+services:
+  softworks-website:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: softworks_website
+
+    ports:
+      - "3000:3000"
+
+    environment:
+      NODE_ENV: production
+
+    restart: unless-stopped

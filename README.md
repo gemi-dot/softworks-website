@@ -1,8 +1,8 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a production-structured [Next.js](https://nextjs.org) marketing site for SoftWorks.
 
 ## Getting Started
 
-First, run the development server:
+Run the development server:
 
 ```bash
 npm run dev
@@ -14,23 +14,49 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3001](http://localhost:3001) if another Next app is already running, otherwise [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Implemented Modules
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Project Structure
+2. Navigation Bar
+3. Hero Section
+4. Trusted By
+5. Services
+6. Solutions
+7. Why SoftWorks
+8. Statistics
+9. Featured Projects
+10. Book Demo
+11. Testimonials
+12. Blog
+13. Contact
+14. Footer
+15. Dark Mode
+16. Animations
+17. Mobile Optimization
+18. SEO (`metadata`, `robots`, `sitemap`)
+19. Django API Integration (`NEXT_PUBLIC_DJANGO_API_URL`)
+20. Production Deployment Guide (`DEPLOYMENT.md`)
 
-## Learn More
+## Brand Color Direction
 
-To learn more about Next.js, take a look at the following resources:
+- 70% neutral: white, navy, soft gray surfaces and typography
+- 20% blue/cyan: brand identity, navigation highlights, section emphasis
+- 10% green/orange accents:
+	- green for ready/success states (for example demo-ready system labels)
+	- orange only for primary actions such as Book Demo and Contact Sales
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Django API Setup
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Create `.env.local`:
 
-## Deploy on Vercel
+```bash
+NEXT_PUBLIC_DJANGO_API_URL=http://localhost:8000/api
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The homepage displays API health status from `GET /health/`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for production steps.

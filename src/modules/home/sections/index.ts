@@ -1,0 +1,13 @@
+export { HeroSection } from "./HeroSection";
+export { EcosystemSection } from "./EcosystemSection";
+export { TrustedBySection } from "./TrustedBySection";
+export { ServicesSection } from "./ServicesSection";
+export { SolutionsSection } from "./SolutionsSection";
+export { TechnologyExperienceSection } from "./TechnologyExperienceSection";
+export { WhySoftWorksSection } from "./WhySoftWorksSection";
+export { StatisticsSection } from "./StatisticsSection";
+export { FeaturedProjectsSection } from "./FeaturedProjectsSection";
+export { BookDemoSection } from "./BookDemoSection";
+export { TestimonialsSection } from "./TestimonialsSection";
+export { BlogSection } from "./BlogSection";
+export { ContactSection } from "./ContactSection";
