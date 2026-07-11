@@ -93,9 +93,14 @@ export function NavigationBar() {
               <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-950 dark:text-slate-100">
                 {siteConfig.name}
               </p>
-              <p className="text-[11px] font-semibold tracking-[0.14em] text-blue-600 dark:text-cyan-300">
-                Community Solutions
-              </p>
+              <div className="flex items-center gap-2">
+                <p className="text-[11px] font-semibold tracking-[0.14em] text-blue-600 dark:text-cyan-300">
+                  Community Solutions
+                </p>
+                <span className="inline-flex items-center rounded-md border border-orange-300 bg-orange-100 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-[0.12em] text-orange-800 dark:border-orange-300/45 dark:bg-orange-500/20 dark:text-orange-200">
+                  {siteConfig.stageLabel}
+                </span>
+              </div>
             </div>
           </Link>
 
