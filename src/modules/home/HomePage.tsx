@@ -20,18 +20,23 @@ import {
   GraduationCap,
   Handshake,
   Hotel,
+  House,
   LayoutDashboard,
   Mail,
   Menu,
   MessageSquareText,
   Network,
+  Package,
+  PieChart,
   Search,
+  ShoppingCart,
   Settings,
   Sparkles,
   Tags,
   Trophy,
   UserRound,
   Users,
+  Wallet,
   type LucideIcon,
 } from "lucide-react";
 
@@ -69,6 +74,11 @@ type IconName =
   | "hotel"
   | "drop"
   | "bottle"
+  | "home"
+  | "cart"
+  | "box"
+  | "wallet"
+  | "pie"
   | "school"
   | "racket"
   | "spark"
@@ -101,6 +111,11 @@ function Icon({ name, className = "h-4 w-4" }: { name: IconName; className?: str
     hotel: Hotel,
     drop: Droplets,
     bottle: FlaskConical,
+    home: House,
+    cart: ShoppingCart,
+    box: Package,
+    wallet: Wallet,
+    pie: PieChart,
     school: GraduationCap,
     racket: Trophy,
     spark: Sparkles,
@@ -282,7 +297,7 @@ const solutionCards = [
     name: "Mineral Water Station Manager",
     sector: "Manufacturing",
     icon: "bottle" as const,
-    summary: "Production, inventory, route delivery, and customer management.",
+    summary: "Choose a workspace to continue operations.",
     badge: "Demo Ready",
   },
   {
@@ -419,6 +434,10 @@ const sampleFeaturesBySector: Record<string, string[]> = {
   Roadmap: ["New modules", "Client requests", "Release timeline"],
 };
 
+const sampleFeaturesBySolution: Record<string, string[]> = {
+  "Mineral Water Station Manager": ["Real-time dashboard", "Customers, sales, and expenses", "Inventory and reports"],
+};
+
 const heroChips = [
   { icon: "building" as const, tone: "bg-cyan-50 text-cyan-600 border-cyan-200", position: "-left-1 top-[10px]" },
   { icon: "school" as const, tone: "bg-indigo-50 text-indigo-600 border-indigo-200", position: "left-[34px] -top-[6px]" },
@@ -460,6 +479,16 @@ export function HomePage() {
   const statsStepDelay = isMobile ? 45 : 85;
   const solutionsBaseDelay = isMobile ? 70 : 280;
   const solutionsMobileRowDelay = 55;
+  const mineralSolution = solutionCards.find((solution) => solution.name === "Mineral Water Station Manager");
+  const nonMineralSolutionCards = solutionCards.filter((solution) => solution.name !== "Mineral Water Station Manager");
+  const mineralModules = [
+    { label: "Home", icon: "home" as const, tone: "border-[#cfe1ff] bg-[#eef5ff] text-[#1f63d6]" },
+    { label: "Customers", icon: "people" as const, tone: "border-[#ccefd6] bg-[#ecfbf1] text-[#1d8b4f]" },
+    { label: "Sales", icon: "cart" as const, tone: "border-[#dfd0ff] bg-[#f3ecff] text-[#7a49c9]" },
+    { label: "Inventory", icon: "box" as const, tone: "border-[#cdefff] bg-[#eaf8ff] text-[#0f7ea8]" },
+    { label: "Expenses", icon: "wallet" as const, tone: "border-[#ffd9b6] bg-[#fff2e5] text-[#db6b1b]" },
+    { label: "Reports", icon: "pie" as const, tone: "border-[#cfe1ff] bg-[#eef5ff] text-[#2f62ca]" },
+  ];
 
   return (
     <main className={`${headingFont.variable} ${bodyFont.variable} flex-1 px-3 py-4 sm:px-4 lg:px-5`}>
@@ -623,9 +652,72 @@ export function HomePage() {
               </div>
             </div>
 
+            {mineralSolution ? (
+              <article
+                id="mineral-water-station-card"
+                className="animate-fade-up scroll-mt-24 mt-3 overflow-hidden rounded-2xl border border-[#cfe0fb] bg-[linear-gradient(115deg,_#f8fbff_0%,_#f0f7ff_44%,_#e8f1ff_100%)] p-3.5 shadow-[0_20px_45px_-34px_rgba(31,99,214,0.75)] [animation-fill-mode:forwards]"
+                style={{ animationDelay: isMobile ? `${solutionsBaseDelay}ms` : "240ms" }}
+              >
+                <div className="grid gap-3 lg:grid-cols-[170px_minmax(0,1fr)_260px]">
+                  <div className="relative flex items-center justify-center rounded-2xl border border-[#cfe2ff] bg-[radial-gradient(circle_at_36%_22%,_#ffffff_0%,_#d7e9ff_46%,_#c5deff_100%)] p-3">
+                    <div className="absolute inset-x-3 bottom-3 h-3 rounded-full bg-[#9cc6ff]/45 blur-sm" />
+                    <div className="inline-flex h-24 w-24 items-center justify-center rounded-[22px] border border-[#a8cdff] bg-white/90 text-[#1f63d6] shadow-[0_16px_24px_-14px_rgba(31,99,214,0.75)]">
+                      <Icon name="bottle" className="h-11 w-11" />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div>
+                      <p className="font-[var(--font-body)] text-[10px] font-semibold uppercase tracking-[0.18em] text-[#2f6ed8]">Demo Ready</p>
+                      <h3 className="mt-1 font-[var(--font-heading)] text-[34px] font-bold leading-[0.98] tracking-[-0.014em] text-[#1146a6]">
+                        Mineral Water Station
+                        <span className="block text-[#2a6fe1]">Manager</span>
+                      </h3>
+                      <p className="mt-1.5 font-[var(--font-body)] text-[15px] leading-[1.35] text-[#35579a]">Choose a workspace to continue operations.</p>
+                    </div>
+
+                    <div className="flex flex-wrap gap-1.5 font-[var(--font-body)] text-[10px]">
+                      {mineralModules.map((module) => (
+                        <span key={module.label} className={`inline-flex items-center gap-1 rounded-md border px-2.5 py-1.5 font-semibold leading-none ${module.tone}`}>
+                          <Icon name={module.icon} className="h-[13px] w-[13px]" />
+                          {module.label}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="flex flex-wrap items-center gap-2 pt-0.5">
+                      <span className="rounded-full bg-[#e9f2ff] px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.11em] text-[#1f63d6]">
+                        {mineralSolution.badge}
+                      </span>
+                      <button
+                        type="button"
+                        className="inline-flex h-9 items-center gap-1.5 rounded-xl border border-[#1f63d6] bg-[#1f63d6] px-4 text-[12px] font-semibold text-white shadow-[0_10px_20px_-12px_rgba(31,99,214,0.95)]"
+                      >
+                        Open Dashboard
+                        <Icon name="arrow" className="h-3 w-3" />
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="relative hidden overflow-hidden rounded-2xl border border-[#cde2ff] bg-[linear-gradient(165deg,_#dcebff_0%,_#a8cdff_55%,_#8cb9f4_100%)] p-3 lg:block">
+                    <div className="absolute inset-x-4 bottom-3 h-4 rounded-full bg-[#2e64b8]/25 blur" />
+                    <div className="absolute left-3 top-3 h-7 w-10 rounded-md border border-white/50 bg-white/35" />
+                    <div className="absolute right-3 top-4 h-5 w-12 rounded-md border border-white/45 bg-white/35" />
+                    <div className="absolute inset-x-4 bottom-4 rounded-xl border border-[#6da3ea] bg-[linear-gradient(180deg,_#2f6fc7_0%,_#1f4fa7_100%)] p-3 text-white shadow-[0_20px_24px_-18px_rgba(17,52,121,0.95)]">
+                      <p className="font-[var(--font-heading)] text-[10px] font-bold uppercase tracking-[0.14em] text-[#d6e6ff]">Pure & Refreshing</p>
+                      <p className="font-[var(--font-body)] text-[10px] text-[#ecf3ff]">Water for life</p>
+                    </div>
+                    <div className="absolute bottom-6 left-5 h-9 w-7 rounded-[7px] border border-[#5f95dc] bg-[linear-gradient(180deg,_#cde6ff_0%,_#8fc0ef_100%)]" />
+                    <div className="absolute bottom-6 left-14 h-12 w-8 rounded-[7px] border border-[#5f95dc] bg-[linear-gradient(180deg,_#cde6ff_0%,_#8fc0ef_100%)]" />
+                    <div className="absolute bottom-6 right-7 h-11 w-8 rounded-[7px] border border-[#5f95dc] bg-[linear-gradient(180deg,_#cde6ff_0%,_#8fc0ef_100%)]" />
+                  </div>
+                </div>
+              </article>
+            ) : null}
+
             <div className="mt-3 grid gap-2.5 sm:grid-cols-2 xl:grid-cols-5">
-              {solutionCards.map((solution, idx) => {
-                const features = sampleFeaturesBySector[solution.sector] ?? ["Live dashboard", "Team access", "Export reports"];
+              {nonMineralSolutionCards.map((solution, idx) => {
+                const features = sampleFeaturesBySolution[solution.name] ?? sampleFeaturesBySector[solution.sector] ?? ["Live dashboard", "Team access", "Export reports"];
 
                 return (
                   <article
@@ -633,8 +725,8 @@ export function HomePage() {
                     className="animate-fade-up rounded-2xl border border-[#d9e5f8] bg-[linear-gradient(180deg,_#ffffff_0%,_#f8fbff_100%)] p-3 transition hover:-translate-y-0.5 hover:shadow-md [animation-fill-mode:forwards]"
                     style={{
                       animationDelay: isMobile
-                        ? `${solutionsBaseDelay + getGridStaggerDelay(idx, 1, solutionsMobileRowDelay, 0)}ms`
-                        : `${280 + idx * 70}ms`,
+                        ? `${solutionsBaseDelay + 120 + getGridStaggerDelay(idx, 1, solutionsMobileRowDelay, 0)}ms`
+                        : `${330 + idx * 70}ms`,
                     }}
                   >
                     <div className={`mb-2 inline-flex h-8 w-8 items-center justify-center rounded-lg border ${getModuleTone(solution.sector)}`}>
